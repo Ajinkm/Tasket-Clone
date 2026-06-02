@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  
+  backend:
+    container_name: tasket-backend
+    image: ajinkm1/tasket-backend:latest
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+      DB_USER: tasket
+      DB_PASS: tasketpass
+      DB_NAME: tasketdb
+
+  postgres:
+    container_name: tasket_postgres
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: tasket
+      POSTGRES_PASSWORD: tasketpass
+      POSTGRES_DB: tasketdb
+    ports:
+      - "5432:5432"
