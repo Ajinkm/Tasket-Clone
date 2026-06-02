@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev
+      - main
   workflow_dispatch:
 
 jobs:
@@ -40,5 +41,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /opt/tasket
-            docker-compose pull
-            docker-compose up -d
+            docker compose pull
+            docker compose up -d
